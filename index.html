@@ -24,9 +24,9 @@
             </div>
         </div>
         <div class="nav-menu">
-            <a class="nav-link active" data-page="home" data-translate="menu.home">Beranda</a>
-            <a class="nav-link" data-page="about" data-translate="menu.about">Tentang Kami</a>
-            <a class="nav-link" data-page="services" data-translate="menu.services">Jasa & Layanan</a>
+            <a class="nav-link active" href="index.html" data-translate="menu.home">Beranda</a>
+            <a class="nav-link" href="tentangkami.html" data-translate="menu.about">Tentang Kami</a>
+            <a class="nav-link" href="jasa-layanan.html" data-translate="menu.services">Jasa & Layanan</a>
             <button class="lang-switcher" onclick="toggleLanguage()">
                 <span id="lang-text">EN</span> 🌐
             </button>
@@ -36,15 +36,15 @@
     <!-- Bottom Navigation Mobile -->
     <div class="bottom-nav">
         <div class="bottom-nav-container">
-            <div class="bottom-nav-item active" data-page="home">
+            <div class="bottom-nav-item active" onclick="window.location.href='index.html'">
                 <div class="bottom-nav-icon">🏠</div>
                 <div class="bottom-nav-label" data-translate="menu.home">Beranda</div>
             </div>
-            <div class="bottom-nav-item" data-page="about">
+            <div class="bottom-nav-item" onclick="window.location.href='tentangkami.html'">
                 <div class="bottom-nav-icon">ℹ️</div>
                 <div class="bottom-nav-label" data-translate="menu.about">Tentang</div>
             </div>
-            <div class="bottom-nav-item" data-page="services">
+            <div class="bottom-nav-item" onclick="window.location.href='jasa-layanan.html'">
                 <div class="bottom-nav-icon">⚙️</div>
                 <div class="bottom-nav-label" data-translate="menu.services">Layanan</div>
             </div>
@@ -71,12 +71,12 @@
                         Layanan pengadaan spare part, perbaikan, dan perawatan terpercaya dengan harga terjangkau dan garansi berkualitas
                     </p>
                     <div class="cta-buttons">
-                        <button class="btn btn-primary" onclick="navigateTo('services')" data-translate="hero.cta1">
+                        <a href="jasa-layanan.html" class="btn btn-primary" data-translate="hero.cta1">
                             Lihat Layanan Kami
-                        </button>
-                        <button class="btn btn-secondary" onclick="navigateTo('about')" data-translate="hero.cta2">
+                        </a>
+                        <a href="tentangkami.html" class="btn btn-secondary" data-translate="hero.cta2">
                             Tentang Kami
-                        </button>
+                        </a>
                     </div>
                 </div>
             </section>
@@ -128,289 +128,6 @@
                         <p data-translate="features.feature6.desc">
                             Siap melayani kebutuhan darurat Anda kapan saja untuk memastikan operasional tetap berjalan
                         </p>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- About Page -->
-        <div id="about" class="page">
-            <section class="hero">
-                <div class="hero-content">
-                    <h2 data-translate="about.hero.title">Tentang <span class="accent-text">CV. TEKNIK MANDIRI SEJAHTERA</span></h2>
-                    <p data-translate="about.hero.subtitle">
-                        Partner terpercaya Anda untuk solusi elevator dan escalator berkualitas
-                    </p>
-                </div>
-            </section>
-
-            <section class="features">
-                <div class="about-content">
-                    <h3 data-translate="about.content.title">Siapa Kami</h3>
-                    <p data-translate="about.content.p1">
-                        Kami adalah sebuah perusahaan yang menyediakan layanan pengadaan spare part, perbaikan serta perawatan elevator dan escalator dengan harga terjangkau, terpercaya dan dilengkapi garansi.
-                    </p>
-                    <p data-translate="about.content.p2">
-                        Apabila Anda sedang mencari solusi untuk pengadaan spare part, perbaikan serta perawatan elevator dan escalator pada gedung Anda, kami siap memberikan solusi yang terbaik dengan biaya dan kualitas terjamin.
-                    </p>
-                    <p data-translate="about.content.p3">
-                        Kami juga menawarkan jasa modernisasi untuk elevator dan escalator sebagai peningkatan teknologi yang lebih baru.
-                    </p>
-
-                    <div class="about-highlight">
-                        <h4 data-translate="about.highlight.title">Komitmen Kami</h4>
-                        <ul>
-                            <li data-translate="about.highlight.item1">Kualitas layanan terbaik dengan teknisi bersertifikat</li>
-                            <li data-translate="about.highlight.item2">Spare part original dan kompatibel berkualitas tinggi</li>
-                            <li data-translate="about.highlight.item3">Harga kompetitif dengan transparansi biaya</li>
-                            <li data-translate="about.highlight.item4">Garansi resmi untuk setiap pekerjaan</li>
-                            <li data-translate="about.highlight.item5">Layanan purna jual yang responsif</li>
-                            <li data-translate="about.highlight.item6">Modernisasi teknologi untuk efisiensi maksimal</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- Services Page -->
-        <div id="services" class="page">
-            <section class="hero">
-                <div class="hero-content">
-                    <h2 data-translate="services.hero.title">Jasa & <span class="accent-text">Layanan Kami</span></h2>
-                    <p data-translate="services.hero.subtitle">
-                        Solusi lengkap untuk semua kebutuhan elevator dan escalator Anda
-                    </p>
-                </div>
-            </section>
-
-            <section class="features">
-                <div class="services-grid">
-                    <!-- Traction Machine -->
-                    <div class="service-item">
-                        <img src="assets/img/001.jpeg" alt="Traction Machine" class="service-image">
-                        <div class="service-content">
-                            <h3 data-translate="services.item1.title">Mesin Traksi Elevator (Traction Machine)</h3>
-                            <p data-translate="services.item1.desc">
-                                Mesin penggerak utama elevator dengan sistem traksi yang efisien. Kami menyediakan spare part, perbaikan dan perawatan untuk semua jenis mesin traksi dari berbagai brand terkemuka dengan komponen berkualitas tinggi.
-                            </p>
-                            <span class="service-tag" data-translate="services.tag.sparepart">Spare Part</span>
-                        </div>
-                    </div>
-
-                    <!-- Control Panel -->
-                    <div class="service-item">
-                        <img src="assets/img/002.jpeg" alt="Control Panel" class="service-image">
-                        <div class="service-content">
-                            <h3 data-translate="services.item2.title">Panel Kontrol Elevator (Control Cabinet)</h3>
-                            <p data-translate="services.item2.desc">
-                                Panel kontrol lengkap dengan sistem kelistrikan, kontaktor, relay, dan komponen elektronik. Menyediakan perbaikan, upgrade sistem kontrol, dan penggantian komponen rusak untuk memastikan operasional optimal.
-                            </p>
-                            <span class="service-tag" data-translate="services.tag.repair">Perbaikan</span>
-                        </div>
-                    </div>
-
-                    <!-- Elevator Cabin -->
-                    <div class="service-item">
-                        <img src="assets/img/003.jpeg" alt="Elevator Cabin" class="service-image">
-                        <div class="service-content">
-                            <h3 data-translate="services.item3.title">Interior Kabin Elevator</h3>
-                            <p data-translate="services.item3.desc">
-                                Layanan perbaikan dan modernisasi interior kabin elevator termasuk sistem pencahayaan, panel dinding, lantai, dan komponen keselamatan untuk meningkatkan kenyamanan dan estetika.
-                            </p>
-                            <span class="service-tag" data-translate="services.tag.modernization">Modernisasi</span>
-                        </div>
-                    </div>
-
-                    <!-- Door Mechanism -->
-                    <div class="service-item">
-                        <img src="assets/img/004.jpeg" alt="Door Mechanism" class="service-image">
-                        <div class="service-content">
-                            <h3 data-translate="services.item4.title">Mekanisme Pintu Elevator (Door Operator)</h3>
-                            <p data-translate="services.item4.desc">
-                                Sistem pembuka/penutup pintu otomatis elevator dengan motor penggerak presisi. Layanan meliputi perbaikan, adjustment, penggantian spare part, dan maintenance berkala untuk operasi pintu yang smooth.
-                            </p>
-                            <span class="service-tag" data-translate="services.tag.maintenance">Maintenance</span>
-                        </div>
-                    </div>
-
-                    <!-- Inverter -->
-                    <div class="service-item">
-                        <img src="assets/img/005.jpeg" alt="Inverter Drive" class="service-image">
-                        <div class="service-content">
-                            <h3 data-translate="services.item5.title">Inverter Drive & Variable Frequency Drive</h3>
-                            <p data-translate="services.item5.desc">
-                                Komponen pengatur kecepatan dan kontrol motor elevator modern. Menyediakan perbaikan inverter, penggantian unit rusak, dan upgrade ke teknologi terbaru untuk efisiensi energi maksimal.
-                            </p>
-                            <span class="service-tag" data-translate="services.tag.sparepart">Spare Part</span>
-                        </div>
-                    </div>
-
-                    <!-- PCB Board -->
-                    <div class="service-item">
-                        <img src="assets/img/006.jpeg" alt="PCB Board" class="service-image">
-                        <div class="service-content">
-                            <h3 data-translate="services.item6.title">PCB Board & Control Circuit</h3>
-                            <p data-translate="services.item6.desc">
-                                Papan sirkuit elektronik (PCB) untuk sistem kontrol elevator. Layanan troubleshooting, perbaikan komponen elektronik, replacement board, dan upgrade firmware untuk performa optimal.
-                            </p>
-                            <span class="service-tag" data-translate="services.tag.repair">Perbaikan</span>
-                        </div>
-                    </div>
-
-                    <!-- Elevator Interior View -->
-                    <div class="service-item">
-                        <img src="assets/img/007.jpeg" alt="Elevator Interior" class="service-image">
-                        <div class="service-content">
-                            <h3 data-translate="services.item7.title">Perbaikan & Renovasi Interior Kabin</h3>
-                            <p data-translate="services.item7.desc">
-                                Layanan lengkap renovasi dan modernisasi interior kabin elevator termasuk upgrade lighting system, panel kontrol dalam kabin, dan material finishing berkualitas premium.
-                            </p>
-                            <span class="service-tag" data-translate="services.tag.modernization">Modernisasi</span>
-                        </div>
-                    </div>
-
-                    <!-- Guide Rail -->
-                    <div class="service-item">
-                        <img src="assets/img/008.jpeg" alt="Guide Rail" class="service-image">
-                        <div class="service-content">
-                            <h3 data-translate="services.item8.title">Guide Rail & Mounting System</h3>
-                            <p data-translate="services.item8.desc">
-                                Rel pemandu elevator untuk memastikan gerakan kabin yang stabil dan presisi. Menyediakan alignment, perbaikan bracket mounting, dan penggantian rel yang aus atau rusak.
-                            </p>
-                            <span class="service-tag" data-translate="services.tag.maintenance">Maintenance</span>
-                        </div>
-                    </div>
-
-                    <!-- Escalator Traction -->
-                    <div class="service-item">
-                        <img src="assets/img/009.jpeg" alt="Escalator Machine" class="service-image">
-                        <div class="service-content">
-                            <h3 data-translate="services.item9.title">Mesin Escalator & Drive System</h3>
-                            <p data-translate="services.item9.desc">
-                                Unit mesin penggerak escalator dengan sistem transmisi dan brake safety. Layanan overhaul mesin, penggantian gear box, motor drive, dan maintenance preventif untuk performa smooth.
-                            </p>
-                            <span class="service-tag" data-translate="services.tag.sparepart">Spare Part</span>
-                        </div>
-                    </div>
-
-                    <!-- Main PCB Control -->
-                    <div class="service-item">
-                        <img src="assets/img/010.jpeg" alt="Main Control Board" class="service-image">
-                        <div class="service-content">
-                            <h3 data-translate="services.item10.title">Main Control Board Elevator</h3>
-                            <p data-translate="services.item10.desc">
-                                PCB utama sistem kontrol elevator dengan microprocessor dan komponen digital. Perbaikan circuit, replacement IC/komponen, dan programming untuk semua brand elevator.
-                            </p>
-                            <span class="service-tag" data-translate="services.tag.repair">Perbaikan</span>
-                        </div>
-                    </div>
-
-                    <!-- Communication Board -->
-                    <div class="service-item">
-                        <img src="assets/img/011.jpeg" alt="Communication Board" class="service-image">
-                        <div class="service-content">
-                            <h3 data-translate="services.item11.title">Communication & Signal Board</h3>
-                            <p data-translate="services.item11.desc">
-                                Board komunikasi untuk sistem panggilan dan indikator lantai elevator. Menyediakan perbaikan, kalibrasi signal, dan upgrade sistem komunikasi antar floor.
-                            </p>
-                            <span class="service-tag" data-translate="services.tag.repair">Perbaikan</span>
-                        </div>
-                    </div>
-
-                    <!-- Display Board -->
-                    <div class="service-item">
-                        <img src="assets/img/012.jpeg" alt="Display Board" class="service-image">
-                        <div class="service-content">
-                            <h3 data-translate="services.item12.title">Display Board & Floor Indicator</h3>
-                            <p data-translate="services.item12.desc">
-                                Papan display digital untuk indikator lantai dan informasi elevator. Layanan penggantian LED/LCD display, repair board, dan upgrade ke display modern dengan teknologi terkini.
-                            </p>
-                            <span class="service-tag" data-translate="services.tag.modernization">Modernisasi</span>
-                        </div>
-                    </div>
-
-                    <!-- Elevator Motor -->
-                    <div class="service-item">
-                        <img src="assets/img/013.jpeg" alt="Elevator Motor" class="service-image">
-                        <div class="service-content">
-                            <h3 data-translate="services.item13.title">Motor Listrik Elevator & Rewinding</h3>
-                            <p data-translate="services.item13.desc">
-                                Motor penggerak elevator dengan berbagai kapasitas daya. Layanan rewinding motor, bearing replacement, balancing, dan overhaul lengkap untuk performa optimal dan hemat energi.
-                            </p>
-                            <span class="service-tag" data-translate="services.tag.sparepart">Spare Part</span>
-                        </div>
-                    </div>
-
-                    <!-- Remote Control -->
-                    <div class="service-item">
-                        <img src="assets/img/014.jpeg" alt="Remote Control Panel" class="service-image">
-                        <div class="service-content">
-                            <h3 data-translate="services.item14.title">Panel Kontrol Remote & Monitoring</h3>
-                            <p data-translate="services.item14.desc">
-                                Sistem kontrol jarak jauh dan monitoring untuk elevator modern. Instalasi, konfigurasi, dan integrasi dengan building management system untuk kontrol terpusat.
-                            </p>
-                            <span class="service-tag" data-translate="services.tag.modernization">Modernisasi</span>
-                        </div>
-                    </div>
-
-                    <!-- V-Belt -->
-                    <div class="service-item">
-                        <img src="assets/img/015.jpeg" alt="V-Belt" class="service-image">
-                        <div class="service-content">
-                            <h3 data-translate="services.item15.title">V-Belt & Transmission Belt</h3>
-                            <p data-translate="services.item15.desc">
-                                Belt transmisi untuk sistem penggerak elevator dan escalator. Menyediakan berbagai ukuran dan tipe belt berkualitas tinggi, instalasi, dan adjustment tensioning yang tepat.
-                            </p>
-                            <span class="service-tag" data-translate="services.tag.sparepart">Spare Part</span>
-                        </div>
-                    </div>
-
-                    <!-- Escalator Wheel -->
-                    <div class="service-item">
-                        <img src="assets/img/016.jpeg" alt="Escalator Wheel" class="service-image">
-                        <div class="service-content">
-                            <h3 data-translate="services.item16.title">Roda & Roller Escalator</h3>
-                            <p data-translate="services.item16.desc">
-                                Step roller dan guide wheel untuk sistem escalator. Penggantian roller aus, bearing maintenance, dan balancing untuk operasi escalator yang halus dan minim noise.
-                            </p>
-                            <span class="service-tag" data-translate="services.tag.maintenance">Maintenance</span>
-                        </div>
-                    </div>
-
-                    <!-- Encoder -->
-                    <div class="service-item">
-                        <img src="assets/img/017.jpeg" alt="Encoder" class="service-image">
-                        <div class="service-content">
-                            <h3 data-translate="services.item17.title">Encoder & Position Sensor</h3>
-                            <p data-translate="services.item17.desc">
-                                Sensor posisi dan encoder untuk akurasi pergerakan elevator. Kalibrasi, penggantian sensor rusak, dan upgrade ke encoder presisi tinggi untuk leveling yang sempurna.
-                            </p>
-                            <span class="service-tag" data-translate="services.tag.repair">Perbaikan</span>
-                        </div>
-                    </div>
-
-                    <!-- Brake Resistor -->
-                    <div class="service-item">
-                        <img src="assets/img/018.jpeg" alt="Brake Resistor" class="service-image">
-                        <div class="service-content">
-                            <h3 data-translate="services.item18.title">Brake Resistor & Safety Brake</h3>
-                            <p data-translate="services.item18.desc">
-                                Sistem pengereman darurat dan resistor untuk kontrol kecepatan. Testing brake system, penggantian brake pad/shoe, dan calibration untuk keamanan maksimal sesuai standar.
-                            </p>
-                            <span class="service-tag" data-translate="services.tag.maintenance">Maintenance</span>
-                        </div>
-                    </div>
-
-                    <!-- Safety Device -->
-                    <div class="service-item">
-                        <img src="assets/img/019.jpeg" alt="Safety Device" class="service-image">
-                        <div class="service-content">
-                            <h3 data-translate="services.item19.title">Perangkat Keselamatan & Safety Switch</h3>
-                            <p data-translate="services.item19.desc">
-                                Safety device lengkap termasuk over-speed governor, safety gear, door lock, dan emergency switch. Testing, sertifikasi, dan penggantian komponen safety sesuai regulasi.
-                            </p>
-                            <span class="service-tag" data-translate="services.tag.maintenance">Maintenance</span>
-                        </div>
                     </div>
                 </div>
             </section>

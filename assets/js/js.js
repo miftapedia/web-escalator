@@ -199,37 +199,6 @@ function toggleLanguage() {
     applyTranslations();
 }
 
-// Navigation System
-function navigateTo(page) {
-    // Hide all pages
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    
-    // Show selected page
-    document.getElementById(page).classList.add('active');
-    
-    // Update desktop navigation
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('data-page') === page) {
-            link.classList.add('active');
-        }
-    });
-    
-    // Update mobile navigation
-    document.querySelectorAll('.bottom-nav-item').forEach(item => {
-        item.classList.remove('active');
-        if (item.getAttribute('data-page') === page) {
-            item.classList.add('active');
-        }
-    });
-    
-    // Save to localStorage
-    localStorage.setItem('currentPage', page);
-    
-    // Scroll to top
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
 // Scroll to top button
 function scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -243,31 +212,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 800);
 
     // Apply saved language
-    document.getElementById('lang-text').textContent = currentLang === 'id' ? 'EN' : 'ID';
-    document.getElementById('lang-text-mobile').textContent = currentLang === 'id' ? 'EN' : 'ID';
+    if (document.getElementById('lang-text')) {
+        document.getElementById('lang-text').textContent = currentLang === 'id' ? 'EN' : 'ID';
+    }
+    if (document.getElementById('lang-text-mobile')) {
+        document.getElementById('lang-text-mobile').textContent = currentLang === 'id' ? 'EN' : 'ID';
+    }
     applyTranslations();
-
-    // Restore last page
-    const lastPage = localStorage.getItem('currentPage') || 'home';
-    navigateTo(lastPage);
-
-    // Desktop navigation
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', function() {
-            const page = this.getAttribute('data-page');
-            navigateTo(page);
-        });
-    });
-
-    // Mobile navigation
-    document.querySelectorAll('.bottom-nav-item').forEach(item => {
-        item.addEventListener('click', function() {
-            const page = this.getAttribute('data-page');
-            if (page) {
-                navigateTo(page);
-            }
-        });
-    });
 
     // Scroll to top button visibility
     window.addEventListener('scroll', function() {
@@ -325,4 +276,166 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     });
+});
+
+// Service Modal Functionality
+class ServiceModal {
+    constructor() {
+        this.modal = document.getElementById('serviceModal');
+        this.currentServiceId = null;
+        this.currentImageIndex = 0;
+        
+        if (!this.modal) return;
+        
+        this.serviceImages = {
+            1: ['assets/img/001.jpeg'],
+            2: ['assets/img/002.jpeg'],
+            3: ['assets/img/003.jpeg'],
+            4: ['assets/img/004.jpeg'],
+            5: ['assets/img/005.jpeg'],
+            6: ['assets/img/006.jpeg'],
+            7: ['assets/img/007.jpeg'],
+            8: ['assets/img/008.jpeg'],
+            9: ['assets/img/009.jpeg'],
+            10: ['assets/img/010.jpeg'],
+            11: ['assets/img/011.jpeg'],
+            12: ['assets/img/012.jpeg'],
+            13: ['assets/img/013.jpeg'],
+            14: ['assets/img/014.jpeg'],
+            15: ['assets/img/015.jpeg'],
+            16: ['assets/img/016.jpeg'],
+            17: ['assets/img/017.jpeg'],
+            18: ['assets/img/018.jpeg'],
+            19: ['assets/img/019.jpeg']
+        };
+
+        this.init();
+    }
+
+    init() {
+        // Add click listeners to all service images
+        document.querySelectorAll('.service-image').forEach(img => {
+            img.style.cursor = 'pointer';
+            img.addEventListener('click', (e) => {
+                e.preventDefault();
+                const serviceId = img.getAttribute('data-service-id');
+                this.openModal(serviceId, img.getAttribute('data-title'), img.getAttribute('data-desc'));
+            });
+        });
+
+        // Find all button elements within modal
+        const prevBtn = this.modal.querySelector('.modal-prev');
+        const nextBtn = this.modal.querySelector('.modal-next');
+        const closeBtn = this.modal.querySelector('.modal-close');
+        
+        // Add direct event listeners with arrow functions to maintain 'this' context
+        if (prevBtn) {
+            prevBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Previous clicked');
+                this.previousImage();
+            });
+        }
+        
+        if (nextBtn) {
+            nextBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Next clicked');
+                this.nextImage();
+            });
+        }
+        
+        if (closeBtn) {
+            closeBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                this.closeModal();
+            });
+        }
+
+        // Close modal when clicking outside
+        this.modal.addEventListener('click', (e) => {
+            if (e.target === this.modal) {
+                this.closeModal();
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!this.modal.classList.contains('active')) return;
+            
+            if (e.key === 'ArrowLeft') this.previousImage();
+            if (e.key === 'ArrowRight') this.nextImage();
+            if (e.key === 'Escape') this.closeModal();
+        });
+    }
+
+    openModal(serviceId, titleKey, descKey) {
+        this.currentServiceId = parseInt(serviceId);
+        this.currentImageIndex = 0;
+
+        // Get title and description from translations
+        const title = translations[currentLang][titleKey] || titleKey;
+        const desc = translations[currentLang][descKey] || descKey;
+
+        // Update modal content
+        document.getElementById('modalServiceTitle').textContent = title;
+        document.getElementById('modalServiceDesc').textContent = desc;
+
+        // Update image
+        this.updateImage();
+
+        // Show modal
+        this.modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    closeModal = () => {
+        this.modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
+    updateImage = () => {
+        const images = this.serviceImages[this.currentServiceId];
+        const img = document.getElementById('modalMainImage');
+        const currentImageEl = document.getElementById('currentImage');
+        const totalImagesEl = document.getElementById('totalImages');
+        
+        if (img && images) {
+            img.src = images[this.currentImageIndex];
+        }
+        if (currentImageEl && images) {
+            currentImageEl.textContent = this.currentImageIndex + 1;
+        }
+        if (totalImagesEl && images) {
+            totalImagesEl.textContent = images.length;
+        }
+    }
+
+    nextImage = () => {
+        const images = this.serviceImages[this.currentServiceId];
+        if (images) {
+            this.currentImageIndex = (this.currentImageIndex + 1) % images.length;
+            this.updateImage();
+        }
+    }
+
+    previousImage = () => {
+        const images = this.serviceImages[this.currentServiceId];
+        if (images) {
+            this.currentImageIndex = (this.currentImageIndex - 1 + images.length) % images.length;
+            this.updateImage();
+        }
+    }
+}
+
+// Initialize modal when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+    // Only initialize modal on services page
+    if (document.getElementById('serviceModal')) {
+        const modal = new ServiceModal();
+        console.log('ServiceModal initialized');
+    }
 });
