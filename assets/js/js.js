@@ -272,10 +272,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Scroll to top button visibility
     window.addEventListener('scroll', function() {
         const scrollTop = document.getElementById('scrollTop');
+        const whatsappFab = document.querySelector('.whatsapp-fab');
         if (window.pageYOffset > 300) {
             scrollTop.classList.add('visible');
+            whatsappFab.classList.add('visible');
         } else {
             scrollTop.classList.remove('visible');
+            whatsappFab.classList.remove('visible');
         }
 
         // Navbar scroll effect

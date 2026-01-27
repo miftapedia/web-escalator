@@ -724,6 +724,7 @@ footer {
     font-size: 1.5rem;
     cursor: pointer;
     opacity: 0;
+    transform: translateY(100px);
     transition: all 0.3s ease;
     z-index: 999;
     box-shadow: 0 4px 15px rgba(243, 156, 18, 0.4);
@@ -731,6 +732,7 @@ footer {
 
 .scroll-top.visible {
     opacity: 1;
+    transform: translateY(0);
 }
 
 .scroll-top:hover {
@@ -740,9 +742,50 @@ footer {
 
 @media (max-width: 768px) {
     .scroll-top {
-        bottom: 100px;
+        bottom: 155px;
         right: 20px;
         width: 45px;
         height: 45px;
+    }
+}
+
+/* WhatsApp FAB */
+.whatsapp-fab {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: #25d366;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(100px);
+    transition: all 0.3s ease;
+}
+
+.whatsapp-fab.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.whatsapp-fab:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+}
+
+@media (max-width: 768px) {
+    .whatsapp-fab {
+        bottom: 90px;
+        right: 20px;
+        width: 55px;
+        height: 55px;
+        font-size: 2rem;
     }
 }
