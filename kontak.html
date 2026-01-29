@@ -158,35 +158,33 @@
         </div>
     </div>
 
-    <!-- Fixed Navbar -->
-    <nav class="fixed top-0 left-0 right-0 z-30 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-700 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <!-- Logo -->
-            <div class="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity">
-                <div class="w-10 h-10 bg-gradient-accent rounded-lg flex items-center justify-center text-white font-bold">TM</div>
-                <div class="hidden sm:block">
-                    <h1 class="text-xs font-bold text-slate-900 dark:text-white leading-tight">TEKNIK MANDIRI</h1>
-                    <span class="text-xs text-amber-600 dark:text-amber-400 font-semibold" data-translate="tagline">ELEVATOR & ESCALATOR</span>
+    <!-- Navbar Desktop -->
+    <nav class="fixed top-0 left-0 right-0 z-40 navbar-desktop">
+        <div class="backdrop-blur-md bg-gradient-to-r from-slate-900/95 via-blue-900/95 to-slate-900/95 border-b border-amber-400/20 transition-all duration-300">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center gap-3 cursor-pointer" onclick="window.location.href='index.html'">
+                    <div class="w-14 h-14 bg-gradient-accent rounded-2xl flex items-center justify-center font-bold text-white text-lg shadow-lg hover:shadow-xl transition-all hover:scale-110 hover:rotate-3">TM</div>
+                    <div class="hidden sm:flex flex-col">
+                        <h1 class="text-xl font-bold text-white leading-tight">TEKNIK MANDIRI</h1>
+                        <span class="text-xs font-semibold text-amber-400 tracking-wider" data-translate="tagline">ELEVATOR & ESCALATOR EXPERTS</span>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Nav Links -->
-            <div class="hidden md:flex items-center gap-6">
-                <a href="index.html" class="text-slate-700 dark:text-slate-300 hover:text-amber-600 dark:hover:text-amber-400 font-medium transition-colors" data-translate="menu.home">Beranda</a>
-                <a href="tentangkami.html" class="text-slate-700 dark:text-slate-300 hover:text-amber-600 dark:hover:text-amber-400 font-medium transition-colors" data-translate="menu.about">Tentang Kami</a>
-                <a href="jasa-layanan.html" class="text-slate-700 dark:text-slate-300 hover:text-amber-600 dark:hover:text-amber-400 font-medium transition-colors" data-translate="menu.services">Jasa & Layanan</a>
-                <a href="kontak.html" class="text-amber-600 dark:text-amber-400 font-bold transition-colors border-b-2 border-amber-600 dark:border-amber-400 pb-1" data-translate="menu.contact">Kontak</a>
-            </div>
+                <!-- Nav Menu -->
+                <div class="hidden lg:flex items-center gap-8">
+                    <a href="index.html" class="nav-link relative text-white font-medium hover:text-amber-400 transition-colors" data-translate="menu.home">Beranda</a>
+                    <a href="tentangkami.html" class="nav-link relative text-white font-medium hover:text-amber-400 transition-colors" data-translate="menu.about">Tentang Kami</a>
+                    <a href="jasa-layanan.html" class="nav-link relative text-white font-medium hover:text-amber-400 transition-colors" data-translate="menu.services">Jasa & Layanan</a>
+                    <a href="kontak.html" class="nav-link relative text-white font-medium hover:text-amber-400 transition-colors" data-translate="menu.contact">Kontak Kami</a>
+                </div>
 
-            <!-- Right Actions -->
-            <div class="flex items-center gap-3">
-                <button onclick="toggleLanguage()" class="px-3 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 text-sm font-semibold transition-colors">
-                    <span id="lang-text">EN</span> 🌐
-                </button>
-                <button onclick="toggleDarkMode()" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
-                    <i class="fas fa-moon dark:hidden"></i>
-                    <i class="fas fa-sun hidden dark:inline text-yellow-400"></i>
-                </button>
+                <!-- Controls -->
+                <div class="flex items-center gap-3">
+                    <button onclick="toggleLanguage()" class="px-4 py-2 bg-amber-400/20 hover:bg-amber-400/30 border border-amber-400 text-amber-400 rounded-full font-semibold text-sm transition-all duration-300 flex items-center gap-1" title="Ganti Bahasa">
+                        <span id="lang-text" class="font-bold">EN</span> 🌐
+                    </button>
+                </div>
             </div>
         </div>
     </nav>
@@ -238,9 +236,9 @@
                     </span>
                 </div>
                 
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight drop-shadow-xl" style="text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8), 0 0 30px rgba(59, 130, 246, 0.5), 0 0 50px rgba(59, 130, 246, 0.8), 0 0 80px rgba(59, 130, 246, 0.6); -webkit-text-stroke: 2px rgba(0, 0, 0, 0.9); filter: brightness(1.2);">
                     <span class="block">Mari Kita</span>
-                    <span class="block mt-2 bg-gradient-to-r from-cyan-300 via-blue-400 to-blue-500 bg-clip-text text-transparent animate-pulse">Terhubung</span>
+                    <span class="block mt-2 text-amber-400 animate-pulse drop-shadow-lg" style="text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8), 0 0 50px rgba(59, 130, 246, 0.9), 0 0 80px rgba(59, 130, 246, 0.7), 0 0 120px rgba(59, 130, 246, 0.5); -webkit-text-stroke: 2px rgba(0, 0, 0, 0.9); filter: brightness(1.3) contrast(1.1);">Terhubung</span>
                 </h1>
                 
                 <p class="text-lg sm:text-xl text-slate-200 max-w-3xl mx-auto leading-relaxed">
