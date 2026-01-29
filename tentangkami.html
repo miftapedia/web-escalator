@@ -29,10 +29,37 @@
             box-shadow: 0 0 30px rgba(243, 156, 18, 0.2);
         }
         
-        .stat-counter {
+.stat-counter {
             font-size: 3rem;
             font-weight: 900;
             color: #f39c12;
+        }
+
+        /* Mobile Hero Background Optimization */
+        @media (max-width: 768px) {
+            .hero-background {
+                background: white !important;
+            }
+            
+            .hero-overlay {
+                background: none !important;
+            }
+            
+            /* Mobile text colors for white background */
+            .hero-content h1 {
+                color: #1e293b !important;
+            }
+            
+            .hero-content p {
+                color: #475569 !important;
+            }
+            
+            .hero-content .text-transparent {
+                background: linear-gradient(to right, #f59e0b, #ea580c) !important;
+                background-clip: text !important;
+                -webkit-background-clip: text !important;
+                color: transparent !important;
+            }
         }
     </style>
 </head>
@@ -108,20 +135,20 @@
     <!-- Main Content -->
     <main class="pt-20 pb-20 lg:pb-8">
         <!-- Hero Section -->
-        <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 pt-8">
-            <div class="absolute inset-0 opacity-30" style="background-image: url('assets/img/025.jpg'); background-size: cover; background-position: center; background-attachment: fixed;"></div>
+        <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-8">
+            <div class="absolute inset-0 hero-background" style="background-image: url('assets/img/025.jpg'); background-size: cover; background-position: center; background-attachment: scroll;"></div>
             
             <div class="absolute inset-0 overflow-hidden">
                 <div class="absolute -top-1/2 -right-1/4 w-96 h-96 bg-amber-400/20 rounded-full blur-3xl animate-pulse"></div>
                 <div class="absolute -bottom-1/2 -left-1/4 w-96 h-96 bg-blue-400/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
             </div>
 
-            <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight">
+            <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6 backdrop-blur-sm bg-black/30 rounded-2xl p-8 lg:p-12">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight drop-shadow-xl" style="text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(251, 191, 36, 0.3), 0 0 30px rgba(251, 191, 36, 0.5); -webkit-text-stroke: 1px rgba(0, 0, 0, 0.7);">
                     <span data-translate="about.hero.title">Tentang</span>
-                    <span class="block mt-2 bg-gradient-to-r from-amber-300 via-amber-400 to-orange-400 bg-clip-text text-transparent">CV. TEKNIK MANDIRI SEJAHTERA</span>
+                    <span class="block mt-2 text-amber-400 drop-shadow-lg" style="text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8), 0 0 40px rgba(251, 191, 36, 0.7), 0 0 60px rgba(251, 191, 36, 0.4);">CV. TEKNIK MANDIRI SEJAHTERA</span>
                 </h1>
-                <p class="text-lg sm:text-xl text-slate-200 max-w-3xl mx-auto leading-relaxed" data-translate="about.hero.subtitle">
+                <p class="text-lg sm:text-xl text-slate-100 max-w-3xl mx-auto leading-relaxed font-medium drop-shadow-lg" data-translate="about.hero.subtitle" style="text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);">
                     Partner terpercaya Anda untuk solusi elevator dan escalator berkualitas
                 </p>
             </div>

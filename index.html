@@ -84,6 +84,33 @@
         .glow-button:hover::before {
             animation-duration: 1s;
         }
+
+/* Mobile Hero Background Optimization */
+        @media (max-width: 768px) {
+            .hero-background {
+                background: white !important;
+            }
+            
+            .hero-overlay {
+                background: none !important;
+            }
+            
+            /* Mobile text colors for white background */
+            .hero-content h1 {
+                color: #1e293b !important;
+            }
+            
+            .hero-content p {
+                color: #475569 !important;
+            }
+            
+            .hero-content .text-transparent {
+                background: linear-gradient(to right, #f59e0b, #ea580c) !important;
+                background-clip: text !important;
+                -webkit-background-clip: text !important;
+                color: transparent !important;
+            }
+        }
     </style>
 </head>
 <body class="bg-white text-slate-900 transition-colors duration-300">
@@ -165,10 +192,10 @@
 <!-- Hero Section -->
         <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-8">
             <!-- Background Image with Overlay -->
-            <div class="absolute inset-0" style="background-image: url('assets/img/024.jpg'); background-size: cover; background-position: center; background-attachment: fixed;"></div>
+            <div class="absolute inset-0 hero-background" style="background-image: url('assets/img/024.jpg'); background-size: cover; background-position: center; background-attachment: scroll;"></div>
             
             <!-- Dark Overlay for Text Readability -->
-            <div class="absolute inset-0 bg-gradient-to-br from-slate-900/70 via-slate-800/50 to-slate-900/70"></div>
+            <div class="absolute inset-0 hero-overlay bg-gradient-to-br from-slate-900/70 via-slate-800/50 to-slate-900/70"></div>
              
             <!-- Animated Background Elements -->
             <div class="absolute inset-0 overflow-hidden">
