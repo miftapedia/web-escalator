@@ -17,35 +17,27 @@
         html.dark { color-scheme: dark; }
         html.dark body { background: linear-gradient(180deg, #020617 0%, #172554 50%, #020617 100%); }
         
-        /* Card & Animation Styles */
         .card-hover { 
             transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
             position: relative;
-            overflow: hidden;
         }
         
         .card-hover:hover {
-            transform: translateY(-0.5rem);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transform: translateY(-1rem);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
         }
-
-        .gradient-accent { background: linear-gradient(to right, #fbbf24, #f59e0b, #ea580c); }
         
         .glow-box { 
             position: relative;
-            box-shadow: 0 0 30px rgba(243, 156, 18, 0.1), inset 0 1px 2px rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 40px rgba(243, 156, 18, 0.15), inset 0 1px 2px rgba(255, 255, 255, 0.1);
+            transition: box-shadow 0.5s ease;
         }
-
-        /* Timeline Styles */
-        .timeline-line {
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background: linear-gradient(to bottom, #fbbf24, #ea580c);
-            transform: translateX(-50%);
+        
+        .card-hover:hover .glow-box {
+            box-shadow: 0 0 60px rgba(243, 156, 18, 0.25), inset 0 1px 2px rgba(255, 255, 255, 0.2);
         }
+        
+        .gradient-accent { background: linear-gradient(to right, #fbbf24, #f59e0b, #ea580c); }
 
         /* Glowing Button Animations */
         .glow-button {
@@ -70,11 +62,13 @@
         @keyframes glow {
             0%, 100% { 
                 box-shadow: 0 0 20px rgba(251, 191, 36, 0.5), 
-                            0 0 40px rgba(251, 191, 36, 0.3);
+                            0 0 40px rgba(251, 191, 36, 0.3),
+                            0 0 60px rgba(251, 191, 36, 0.2);
             }
             50% { 
                 box-shadow: 0 0 30px rgba(251, 191, 36, 0.8), 
-                            0 0 60px rgba(251, 191, 36, 0.6);
+                            0 0 60px rgba(251, 191, 36, 0.6),
+                            0 0 90px rgba(251, 191, 36, 0.4);
             }
         }
 
@@ -89,10 +83,18 @@
             }
         }
 
-        .animate-glow { animation: glow 3s ease-in-out infinite; }
-        .animate-glow-outline { animation: glow-outline 3s ease-in-out infinite; }
+        .animate-glow {
+            animation: glow 3s ease-in-out infinite;
+        }
 
-        /* Responsive Hero Background Fix */
+        .animate-glow-outline {
+            animation: glow-outline 3s ease-in-out infinite;
+        }
+
+        .glow-button:hover::before {
+            animation-duration: 1s;
+        }
+
         .hero-background {
             background-size: cover !important;
             background-position: center !important;
@@ -100,7 +102,7 @@
         }
     </style>
 </head>
-<body class="bg-white text-slate-900 transition-colors duration-300">
+<body class="bg-white dark:bg-slate-900 transition-colors duration-300">
     <!-- Loader -->
     <div class="fixed inset-0 flex items-center justify-center bg-gradient-to-br from-slate-900 to-blue-900 z-50 loader" id="loader">
         <div class="relative">
@@ -142,208 +144,166 @@
         </div>
     </nav>
 
-<!-- Mobile Bottom Navigation -->
-    <div class="fixed bottom-0 left-0 right-0 md:hidden z-30 bg-white border-t border-slate-200 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
-        <div class="flex justify-around max-w-md mx-auto">
-            <button onclick="window.location.href='tentangkami.html'" class="flex-1 py-3 flex flex-col items-center gap-1 text-amber-600 transition-colors border-t-2 border-amber-600 bg-amber-50/50">
-                <i class="fas fa-info-circle text-lg"></i>
-                <span class="text-xs font-bold">Tentang</span>
-            </button>
-            <button onclick="window.location.href='jasa-layanan.html'" class="flex-1 py-3 flex flex-col items-center gap-1 text-slate-700 hover:text-amber-600 transition-colors">
-                <i class="fas fa-cogs text-lg"></i>
-                <span class="text-xs">Layanan</span>
-            </button>
-            <button onclick="window.location.href='kontak.html'" class="flex-1 py-3 flex flex-col items-center gap-1 text-slate-700 hover:text-amber-600 transition-colors">
-                <i class="fas fa-envelope text-lg"></i>
-                <span class="text-xs">Kontak</span>
-            </button>
+    <!-- Mobile Bottom Navigation (Updated) -->
+    <div class="fixed bottom-0 left-0 right-0 lg:hidden z-40 bg-white border-t border-slate-200 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
+        <div class="flex justify-around items-center py-2">
+            <!-- Home -->
+            <a href="index.html" class="flex-1 flex flex-col items-center gap-1 px-4 py-2 text-slate-700 hover:text-amber-600 transition-colors">
+                <i class="fas fa-home text-xl"></i>
+                <span class="text-xs font-medium" data-translate="menu.home">Beranda</span>
+            </a>
+            <!-- Tentang (Active) -->
+            <a href="tentangkami.html" class="flex-1 flex flex-col items-center gap-1 px-4 py-2 text-amber-600 transition-colors border-t-2 border-amber-600 bg-amber-50/50">
+                <i class="fas fa-info-circle text-xl"></i>
+                <span class="text-xs font-bold" data-translate="menu.about">Tentang</span>
+            </a>
+            <!-- Layanan -->
+            <a href="jasa-layanan.html" class="flex-1 flex flex-col items-center gap-1 px-4 py-2 text-slate-700 hover:text-amber-600 transition-colors">
+                <i class="fas fa-cog text-xl"></i>
+                <span class="text-xs font-medium" data-translate="menu.services">Layanan</span>
+            </a>
+            <!-- Kontak -->
+            <a href="kontak.html" class="flex-1 flex flex-col items-center gap-1 px-4 py-2 text-slate-700 hover:text-amber-600 transition-colors">
+                <i class="fas fa-phone text-xl"></i>
+                <span class="text-xs font-medium" data-translate="menu.contact">Kontak</span>
+            </a>
         </div>
     </div>
-<!-- Hero Section -->
+
+    <!-- Main Content -->
     <main class="pt-20 pb-20 lg:pb-8">
-        <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-8">
+        <!-- Hero Section -->
+        <section class="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
             <!-- Background Image -->
-            <!-- Using 026.jpg for About Us to differentiate from other pages -->
             <div class="absolute inset-0 hero-background" style="background-image: url('assets/img/026.jpg');"></div>
             
-            <!-- Dark Overlay for Text Readability -->
-            <div class="absolute inset-0 hero-overlay bg-gradient-to-br from-slate-900/80 via-slate-900/70 to-slate-900/80"></div>
+            <!-- Dark Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-slate-900/80 to-slate-900/90"></div>
             
-            <!-- Animated Background Elements -->
-            <div class="absolute inset-0 overflow-hidden">
-                <div class="absolute -top-1/2 -right-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
-                <div class="absolute -bottom-1/2 -left-1/4 w-96 h-96 bg-amber-400/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
-            </div>
-
-            <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
-                <div class="mb-4 inline-block">
-                    <span class="px-4 py-2 bg-white/10 border border-white/20 rounded-full text-white text-sm font-semibold backdrop-blur-sm">
-                        <i class="fas fa-history mr-2"></i>Sejak Tahun 2000-an
-                    </span>
+            <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+                <div class="inline-block px-4 py-2 rounded-full border border-amber-400/50 bg-amber-400/10 backdrop-blur-sm mb-4">
+                    <span class="text-amber-400 font-semibold tracking-wider text-sm">PROFIL PERUSAHAAN</span>
                 </div>
                 
-                <!-- Changed font-black to font-semibold for less heavy, firm look -->
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-semibold text-white leading-tight drop-shadow-xl" style="text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);">
-                    <span class="block">Dedikasi Kami untuk</span>
-                    <span class="block mt-2 bg-gradient-to-r from-amber-300 via-amber-400 to-orange-400 bg-clip-text text-transparent animate-pulse drop-shadow-lg">Kualitas & Keamanan</span>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight">
+                    CV. TEKNIK MANDIRI
+                    <span class="block text-amber-400 mt-2">SEJAHTERA</span>
                 </h1>
                 
-                <p class="text-lg sm:text-xl text-slate-200 max-w-3xl mx-auto leading-relaxed">
-                    Mengenal lebih dekat CV. Teknik Mandiri Sejahtera, mitra terpercaya Anda dalam solusi transportasi vertikal yang aman dan efisien.
+                <p class="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+                    Mitra terpercaya dalam solusi transportasi vertikal, menghadirkan keamanan dan kenyamanan dalam setiap perjalanan Anda.
                 </p>
-                
-                <!-- CTA Buttons: Changed font-bold to font-medium -->
-                <div class="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-                    <a href="#vision-mission" class="inline-block px-8 py-4 bg-gradient-accent text-white font-medium rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110 active:scale-95 glow-button animate-glow">
-                        <i class="fas fa-bullseye mr-2"></i>Visi & Misi
-                    </a>
-                    <a href="kontak.html" class="inline-block px-8 py-4 border-2 border-white text-white font-medium rounded-full hover:bg-white/10 transition-all duration-300 hover:shadow-lg hover:shadow-white/50 glow-button-outline animate-glow-outline">
-                        <i class="fas fa-handshake mr-2"></i>Hubungi Kami
-                    </a>
-                </div>
-            </div>
-
-            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-                <i class="fas fa-chevron-down text-amber-400 text-2xl"></i>
             </div>
         </section>
 
-        <!-- Company Profile Section -->
-        <section class="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 bg-white transition-colors duration-300">
-            <div class="max-w-6xl mx-auto">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    <div class="space-y-6">
-                        <h2 class="text-3xl lg:text-4xl font-black text-slate-900">Tentang Perusahaan</h2>
-                        <div class="h-1 w-20 bg-gradient-accent rounded-full"></div>
-                        <p class="text-slate-600 text-lg leading-relaxed">
-                            CV. TEKNIK MANDIRI SEJAHTERA adalah perusahaan yang bergerak di bidang jasa dan layanan pengadaan spare part, perbaikan (repair), perawatan (maintenance), dan modernisasi untuk unit Elevator (Lift) dan Escalator.
-                        </p>
-                        <p class="text-slate-600 text-lg leading-relaxed">
-                            Dengan dukungan tenaga ahli yang profesional dan berpengalaman di bidangnya, kami berkomitmen untuk memberikan solusi terbaik bagi kebutuhan transportasi vertikal gedung Anda, dengan mengutamakan keselamatan, kenyamanan, dan efisiensi.
-                        </p>
-                        <ul class="space-y-3 mt-4">
-                            <li class="flex items-center text-slate-700">
-                                <i class="fas fa-check-circle text-green-500 mr-3 text-xl"></i>
-                                <span>Legalitas Terjamin</span>
-                            </li>
-                            <li class="flex items-center text-slate-700">
-                                <i class="fas fa-check-circle text-green-500 mr-3 text-xl"></i>
-                                <span>Teknisi Bersertifikat</span>
-                            </li>
-                            <li class="flex items-center text-slate-700">
-                                <i class="fas fa-check-circle text-green-500 mr-3 text-xl"></i>
-                                <span>Layanan Purna Jual Prima</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="relative">
-                        <div class="absolute inset-0 bg-gradient-accent rounded-2xl transform rotate-3 opacity-20"></div>
-                        <img src="assets/img/022.jpg" alt="Team at Work" class="relative rounded-2xl shadow-2xl w-full h-auto object-cover transform hover:-translate-y-2 transition-transform duration-500">
-                        <!-- Stats Card Overlay -->
-                        <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-xl border border-slate-100 hidden md:block">
-                            <div class="flex items-center gap-4">
-                                <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center text-amber-600 font-bold text-xl">
-                                    <i class="fas fa-users"></i>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-slate-500 font-semibold">Klien Puas</p>
-                                    <p class="text-2xl font-black text-slate-900">100+</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Vision Mission Section -->
-        <section id="vision-mission" class="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 bg-slate-50">
-            <div class="max-w-6xl mx-auto">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl lg:text-4xl font-black text-slate-900 mb-4">Visi & Misi</h2>
-                    <div class="h-1 w-24 bg-gradient-accent rounded-full mx-auto"></div>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <!-- Visi Card -->
-                    <div class="bg-white p-8 rounded-2xl shadow-lg border border-slate-100 card-hover glow-box">
-                        <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center text-blue-600 text-3xl mb-6">
-                            <i class="fas fa-eye"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-slate-900 mb-4">Visi Kami</h3>
-                        <p class="text-slate-600 leading-relaxed">
-                            Menjadi perusahaan terdepan dan terpercaya dalam layanan solusi transportasi vertikal di Indonesia, yang dikenal karena kualitas, keamanan, dan kepuasan pelanggan yang tinggi.
-                        </p>
-                    </div>
-
-                    <!-- Misi Card -->
-                    <div class="bg-white p-8 rounded-2xl shadow-lg border border-slate-100 card-hover glow-box">
-                        <div class="w-16 h-16 bg-amber-100 rounded-2xl flex items-center justify-center text-amber-600 text-3xl mb-6">
-                            <i class="fas fa-rocket"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-slate-900 mb-4">Misi Kami</h3>
-                        <ul class="space-y-4 text-slate-600 leading-relaxed">
-                            <li class="flex items-start">
-                                <span class="text-amber-500 mr-2 mt-1">1.</span>
-                                <span>Memberikan layanan berkualitas tinggi dengan standar keselamatan terbaik.</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-amber-500 mr-2 mt-1">2.</span>
-                                <span>Menyediakan solusi yang efisien dan efektif untuk setiap kebutuhan pelanggan.</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-amber-500 mr-2 mt-1">3.</span>
-                                <span>Membangun hubungan jangka panjang yang saling menguntungkan dengan mitra dan klien.</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-amber-500 mr-2 mt-1">4.</span>
-                                <span>Terus berinovasi dan meningkatkan kompetensi sumber daya manusia.</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Values Section -->
-        <section class="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 bg-white">
-            <div class="max-w-6xl mx-auto">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl lg:text-4xl font-black text-slate-900 mb-4">Nilai-Nilai Kami</h2>
-                    <p class="text-slate-600 max-w-2xl mx-auto">Prinsip dasar yang menjadi landasan setiap layanan yang kami berikan</p>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="text-center p-6 rounded-xl hover:bg-slate-50 transition-colors">
-                        <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center text-green-600 text-3xl mx-auto mb-4">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <h4 class="text-xl font-bold text-slate-900 mb-2">Safety First</h4>
-                        <p class="text-sm text-slate-500">Keselamatan adalah prioritas utama dalam setiap pekerjaan.</p>
-                    </div>
+        <!-- About Content -->
+        <section class="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-900 transition-colors duration-300">
+            <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Text Content -->
+                <div class="space-y-6">
+                    <h2 class="text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white">
+                        Dedikasi Kami Untuk
+                        <span class="text-amber-500">Kualitas Terbaik</span>
+                    </h2>
                     
-                    <div class="text-center p-6 rounded-xl hover:bg-slate-50 transition-colors">
-                        <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 text-3xl mx-auto mb-4">
-                            <i class="fas fa-award"></i>
-                        </div>
-                        <h4 class="text-xl font-bold text-slate-900 mb-2">Quality</h4>
-                        <p class="text-sm text-slate-500">Standar kualitas tinggi untuk hasil yang tahan lama.</p>
+                    <div class="w-20 h-1.5 bg-gradient-accent rounded-full"></div>
+                    
+                    <div class="prose prose-lg text-slate-600 dark:text-slate-300 space-y-4">
+                        <p>
+                            CV. TEKNIK MANDIRI SEJAHTERA adalah perusahaan spesialis yang bergerak di bidang pengadaan spare part, pemasangan, perbaikan, dan perawatan (maintenance) Elevator dan Escalator.
+                        </p>
+                        <p>
+                            Kami didukung oleh tenaga ahli profesional yang berpengalaman puluhan tahun di industri transportasi vertikal. Komitmen kami adalah memberikan pelayanan terbaik dengan standar keamanan tertinggi, respons cepat, dan harga yang kompetitif.
+                        </p>
+                        <p>
+                            Sejak didirikan, kami telah dipercaya oleh berbagai gedung perkantoran, pusat perbelanjaan, apartemen, dan fasilitas umum lainnya untuk menjaga performa unit transportasi mereka tetap optimal.
+                        </p>
                     </div>
 
-                    <div class="text-center p-6 rounded-xl hover:bg-slate-50 transition-colors">
-                        <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 text-3xl mx-auto mb-4">
-                            <i class="fas fa-hand-holding-heart"></i>
+                    <div class="pt-6">
+                        <a href="jasa-layanan.html" class="inline-flex items-center gap-2 text-amber-600 dark:text-amber-400 font-bold hover:gap-4 transition-all">
+                            Lihat Layanan Kami <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Image Grid -->
+                <div class="relative">
+                    <div class="absolute inset-0 bg-gradient-accent rounded-3xl transform rotate-3 opacity-20 blur-xl"></div>
+                    <div class="grid grid-cols-2 gap-4 relative z-10">
+                        <img src="assets/img/021.jpg" alt="Team Work" class="rounded-2xl shadow-lg w-full h-48 object-cover card-hover">
+                        <img src="assets/img/022.jpg" alt="Maintenance" class="rounded-2xl shadow-lg w-full h-48 object-cover card-hover mt-8">
+                        <img src="assets/img/023.jpg" alt="Sparepart" class="rounded-2xl shadow-lg w-full h-48 object-cover card-hover">
+                        <img src="assets/img/024.jpg" alt="Office" class="rounded-2xl shadow-lg w-full h-48 object-cover card-hover mt-8">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vision Mission -->
+        <section class="py-16 bg-slate-50 dark:bg-slate-800 transition-colors duration-300">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Vision -->
+                    <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-lg border-l-4 border-amber-500 card-hover">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-full flex items-center justify-center text-amber-600 dark:text-amber-400 text-2xl">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Visi Kami</h3>
                         </div>
-                        <h4 class="text-xl font-bold text-slate-900 mb-2">Integrity</h4>
-                        <p class="text-sm text-slate-500">Jujur, transparan, dan bertanggung jawab.</p>
+                        <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Menjadi perusahaan terdepan dan terpercaya dalam solusi Elevator dan Escalator di Indonesia, yang dikenal karena kualitas pelayanan, keahlian teknis, dan integritas tinggi.
+                        </p>
                     </div>
 
-                    <div class="text-center p-6 rounded-xl hover:bg-slate-50 transition-colors">
-                        <div class="w-20 h-20 bg-amber-100 rounded-full flex items-center justify-center text-amber-600 text-3xl mx-auto mb-4">
-                            <i class="fas fa-clock"></i>
+                    <!-- Mission -->
+                    <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-lg border-l-4 border-blue-500 card-hover">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-400 text-2xl">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Misi Kami</h3>
                         </div>
-                        <h4 class="text-xl font-bold text-slate-900 mb-2">Responsiveness</h4>
-                        <p class="text-sm text-slate-500">Cepat tanggap terhadap kebutuhan pelanggan.</p>
+                        <ul class="space-y-3 text-slate-600 dark:text-slate-300">
+                            <li class="flex gap-3">
+                                <i class="fas fa-check-circle text-blue-500 mt-1"></i>
+                                <span>Memberikan layanan pemeliharaan dan perbaikan dengan standar keselamatan tertinggi.</span>
+                            </li>
+                            <li class="flex gap-3">
+                                <i class="fas fa-check-circle text-blue-500 mt-1"></i>
+                                <span>Menyediakan suku cadang berkualitas dan orisinal untuk menjamin keawetan unit.</span>
+                            </li>
+                            <li class="flex gap-3">
+                                <i class="fas fa-check-circle text-blue-500 mt-1"></i>
+                                <span>Membangun hubungan jangka panjang dengan pelanggan melalui pelayanan responsif dan solutif.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Values/Stats -->
+        <section class="py-16 bg-gradient-to-r from-slate-900 to-blue-900 text-white relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10" style="background-image: url('assets/img/pattern.png');"></div>
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                    <div class="space-y-2">
+                        <div class="text-4xl lg:text-5xl font-black text-amber-400 counter">10+</div>
+                        <div class="text-sm lg:text-base opacity-80">Tahun Pengalaman</div>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="text-4xl lg:text-5xl font-black text-amber-400 counter">100+</div>
+                        <div class="text-sm lg:text-base opacity-80">Proyek Selesai</div>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="text-4xl lg:text-5xl font-black text-amber-400 counter">50+</div>
+                        <div class="text-sm lg:text-base opacity-80">Klien Aktif</div>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="text-4xl lg:text-5xl font-black text-amber-400 counter">24/7</div>
+                        <div class="text-sm lg:text-base opacity-80">Layanan Support</div>
                     </div>
                 </div>
             </div>
@@ -355,7 +315,7 @@
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
                 <div>
-                    <h3 class="text-xl font-bold text-amber-400 mb-4">CV. TEKNIK MANDIRI SEJAHTERA</h3>
+                    <h3 class="text-xl font-bold text-amber-400 mb-4">CV. TEKNIK MANDIRI</h3>
                     <p class="text-slate-300 text-sm leading-relaxed">Partner terpercaya untuk solusi pengadaan spare part, perbaikan, dan perawatan elevator & escalator berkualitas tinggi.</p>
                 </div>
                 <div>
@@ -400,111 +360,12 @@
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- Load external JS but provide fallback logic inline -->
     <script src="assets/js/js.js"></script>
     <script>
-        // Inline script to handle logic if js.js is missing or functions are undefined
-        // This prevents ReferenceErrors
-        
-        function safeCall(fnName, ...args) {
-            if (typeof window[fnName] === 'function') {
-                window[fnName](...args);
-            }
-        }
-
-        // Define functions if they don't exist (Fallback Implementation)
-        if (typeof window.applyTranslations === 'undefined') {
-            window.applyTranslations = function() {
-                // console.log('Translations placeholder');
-            };
-        }
-
-        if (typeof window.toggleLanguage === 'undefined') {
-            window.toggleLanguage = function() {
-                const btn = document.getElementById('lang-text');
-                if(btn) {
-                    btn.innerText = btn.innerText === 'EN' ? 'ID' : 'EN';
-                }
-            };
-        }
-
-        if (typeof window.initializeTheme === 'undefined') {
-            window.initializeTheme = function() {
-                // Simple theme check
-                if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                    document.documentElement.classList.add('dark');
-                } else {
-                    document.documentElement.classList.remove('dark');
-                }
-            };
-        }
-
-        if (typeof window.scrollToTop === 'undefined') {
-            window.scrollToTop = function() {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            };
-        }
-
-        // GSAP Initialization logic
-        function initLocalGSAP() {
-            if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-                gsap.registerPlugin(ScrollTrigger);
-                
-                // Animate elements on scroll
-                gsap.utils.toArray('.card-hover').forEach((card, i) => {
-                    gsap.fromTo(card, 
-                        { y: 50, opacity: 0 },
-                        {
-                            y: 0,
-                            opacity: 1,
-                            duration: 0.8,
-                            delay: i * 0.1,
-                            scrollTrigger: {
-                                trigger: card,
-                                start: "top 85%",
-                                toggleActions: "play none none reverse"
-                            }
-                        }
-                    );
-                });
-
-                // Scroll to top button visibility
-                window.addEventListener('scroll', () => {
-                    const btn = document.getElementById('scrollTop');
-                    if (btn) {
-                        if (window.scrollY > 300) {
-                            btn.classList.remove('opacity-0', 'pointer-events-none');
-                            btn.classList.add('opacity-100', 'pointer-events-auto');
-                        } else {
-                            btn.classList.add('opacity-0', 'pointer-events-none');
-                            btn.classList.remove('opacity-100', 'pointer-events-auto');
-                        }
-                    }
-                });
-            }
-        }
-
-        // Initialize everything
         document.addEventListener('DOMContentLoaded', () => {
-            // Remove loader
-            setTimeout(() => {
-                const loader = document.getElementById('loader');
-                if(loader) {
-                    loader.style.opacity = '0';
-                    loader.style.pointerEvents = 'none';
-                }
-            }, 800);
-
-            // Call functions safely
-            safeCall('applyTranslations');
-            safeCall('initializeTheme');
-            
-            // Use local GSAP init if external one isn't available or just run local logic
-            if (typeof window.initializeGSAP === 'undefined') {
-                initLocalGSAP();
-            } else {
-                window.initializeGSAP();
-            }
+            applyTranslations();
+            initializeTheme();
+            initializeGSAP();
         });
     </script>
 </body>
